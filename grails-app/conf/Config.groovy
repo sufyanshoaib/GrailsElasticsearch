@@ -118,3 +118,7 @@ log4j.main = {
 }
 
 elasticSearch.datastoreImpl = "hibernateDatastore"
+cors.allow.origin.regex = 'http://localhost.*'
+cors.headers = [
+        'Access-Control-Allow-Cookies': 'true',
+        'Access-Control-Allow-Credentials':'true']

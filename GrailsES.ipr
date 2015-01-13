@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactManager">
+    <artifact type="exploded-war" name="GrailsES:GrailsWeb exploded">
+      <root id="root">
+        <element id="javaee-facet-resources" facet="GrailsES/web/GrailsWeb" />
+      </root>
+    </artifact>
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
@@ -183,3 +190,4 @@
     </library>
   </component>
 </project>
+

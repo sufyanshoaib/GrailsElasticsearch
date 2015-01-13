@@ -2,10 +2,10 @@ package com.sufyan.demo
 
 class GeoPoint {
 
-    Double latitude
-    Double longitude
+    Double lat
+    Double lon
 
-    static searchable = {
+    static searchable =  {
         root false
     }
 }
