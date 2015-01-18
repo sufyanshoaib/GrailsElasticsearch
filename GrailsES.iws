@@ -67,14 +67,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventController.groovy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EventController.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/com/sufyan/demo/EventController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6163522" vertical-offset="636" max-vertical-offset="1545">
+            <state vertical-scroll-proportion="-5.88" vertical-offset="636" max-vertical-offset="1545">
               <caret line="62" column="41" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="41" />
               <folding>
                 <element signature="e#25#54#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="502">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -527,12 +537,12 @@
       <workItem from="1421063649917" duration="3840000" />
       <workItem from="1421130322149" duration="11358000" />
       <workItem from="1421244115019" duration="129000" />
-      <workItem from="1421324539214" duration="3935000" />
+      <workItem from="1421324539214" duration="4013000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19262000" />
+    <option name="totallyTimeSpent" value="19340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="13" y="22" width="1346" height="673" extended-state="0" />
@@ -902,11 +912,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/com/sufyan/demo/EventController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6163522" vertical-offset="636" max-vertical-offset="1545">
+        <state vertical-scroll-proportion="-5.88" vertical-offset="636" max-vertical-offset="1545">
           <caret line="62" column="41" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="41" />
           <folding>
             <element signature="e#25#54#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
