@@ -16,17 +16,15 @@ class EventController {
     def eventService
     def elasticSearchService
 
-    def add(String title, String description, double latitude, double longitude, String startDateStr, String endDateStr) {
+    def add(String title, String description, double latitude, double longitude, String startDate, String endDate) {
         GeoPoint point = new GeoPoint(lat:latitude, lon:longitude)
         point.save(flush:true)
         Event event = new Event(title:title, description:description, location:point)
 
         DateTimeFormatter df = DateTimeFormat.forPattern("dd/MM/yyyy")
-                //DateTimeFormatter(for("dd/MM/yyyy")
-        DateTime startDate = df.parseDateTime(startDateStr)
-        DateTime endDate = df.parseDateTime(endDateStr)
-        event.startDate = startDate.toDate()
-        event.endDate = endDate.toDate()
+
+        event.startDate = df.parseDateTime(startDate).toDate()
+        event.endDate = df.parseDateTime(endDate).toDate()
         println("events location:${point}")
 
         event.save(flush:true)
@@ -37,7 +35,7 @@ class EventController {
     }
 
     def search() {
-        String query = params.query
+        String queryString = params.queryString
         String fromDate = params.fromDate
 
         def sortBuilder = SortBuilders.geoDistanceSort("location").
@@ -64,6 +62,7 @@ class EventController {
                 QueryBuilders.matchQuery("title", query) as QueryBuilder,
                 null as Closure, filter)
                 //filter)
+
        /* def result2 = Event.search(
                 [indices: Event, types: Event, sort: sortBuilder],
                 null as Closure,
@@ -79,7 +78,50 @@ class EventController {
         render result as JSON
     }
 
-    def searchPoints(String query) {
+    def queryString(String query) {
+        /*def events = elasticSearchService.search(
+                { bool { must{ query_string(query: query)}}},
+                null as Closure)*/
+        def events = elasticSearchService.search({
+        query_string(
+                fields: ["title", "description"],
+                query: query) })
+        render events as JSON
+    }
+
+    def queryTerm(String query, boolean fuzzy) {
+        // Define the pre & post tag that will wrap each term matched in the document.
+        def highlighter = {
+            field 'description'
+            preTags '<strong>'
+            postTags '</strong>'
+        }
+        def events = elasticSearchService.search([searchType:'dfs_query_and_fetch'/*, highlight: highlighter*/],
+                {
+
+                        if (fuzzy) {
+                            fuzzy :{
+
+                                description {
+                                    value: query
+                                }
+
+                            }
+                        } else {
+                            bool {
+                                must {
+                                    term(description: query)
+                                }
+                            }
+                        }
+
+                })
+        render events as JSON
+    }
+
+
+
+    /*def searchPoints(String query) {
 
         def events = GeoPoint.search(query, [score:true])
 
@@ -93,5 +135,5 @@ class EventController {
         def event = Event.get(id)
         println("Event wth id:${id}, ${event.location.lat}")
         render event as JSON
-    }
+    }*/
 }
