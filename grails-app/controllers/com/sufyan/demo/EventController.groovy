@@ -1,6 +1,9 @@
 package com.sufyan.demo
 
+import com.sufyan.demo.util.SortByEnum
 import grails.converters.JSON
+import org.elasticsearch.search.sort.SortBuilders
+import org.elasticsearch.search.sort.SortOrder
 
 class EventController {
 
@@ -41,15 +44,23 @@ class EventController {
      * @param query
      * @return
      */
-    def search(String query) {
-
+    def search(String query, String sortBy, String order) {
+        SortOrder orderBy = (!order || order == 'asc') ? SortOrder.ASC : SortOrder.DESC
+        SortByEnum sort = SortByEnum.TITLE
+        if (sortBy) {
+            sort = SortByEnum.find(sortBy)
+            println("sort:${sort}")
+        }
+        def sortBuilder = SortBuilders.fieldSort(sort.value).order(orderBy)
         def events = elasticSearchService.search(
+                [sort: sortBuilder],
                 {
                     query_string(fields: ["title", "description"],
                             query: query)
+                    suggest : { suggest_mode: 'popular' }
                 })
 
-        render events as JSON
+        render events.searchResults as JSON
     }
 
     /**

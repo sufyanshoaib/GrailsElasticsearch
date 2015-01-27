@@ -8,7 +8,7 @@ class Event {
     //Long eventId
     String title
     String description
-    GeoPoint location
+    //GeoPoint location
     Date startDate
     Date endDate
 
@@ -23,6 +23,6 @@ class Event {
         //eventId index:'not_analyzed'
         title index:'analyzed', boost:4
         description index:'analyzed', boost:3
-        location geoPoint: true, component: true
+        //location geoPoint: true, component: true
     }
 }
